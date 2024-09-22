@@ -41,6 +41,12 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
+
+	// Javalin
+	implementation "io.javalin:javalin:6.3.0"
+
+	// Coroutines
+	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0"
 }
 
 processResources {
