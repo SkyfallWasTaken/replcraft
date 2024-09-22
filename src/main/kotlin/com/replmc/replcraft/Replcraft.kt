@@ -15,15 +15,18 @@ object Replcraft : ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+        logger.info("Registering commands")
 		CommandRegistrationCallback.EVENT.register { dispatcher, registryAccess, environment ->
             dispatcher.register(CommandManager.literal("tokens").executes(TokensCommand::execute))
         }
 
         launch {
+            logger.info("Starting RPC server...")
             val rpcServer = RpcServer();
             ServerLifecycleEvents.SERVER_STOPPING.register({
                 rpcServer.shutdown()
             })
+            logger.info("Started RPC server")
         }
 
         logger.info("Initialized!")
