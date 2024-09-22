@@ -1,5 +1,6 @@
 package com.replmc.replcraft
 
+import com.replmc.replcraft.rpc.RpcServer
 import net.fabricmc.api.ModInitializer
 import net.minecraft.server.command.CommandManager
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback

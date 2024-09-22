@@ -1,4 +1,4 @@
-package com.replmc.replcraft
+package com.replmc.replcraft.rpc
 
 import io.javalin.Javalin
 
@@ -10,8 +10,11 @@ class RpcServer {
         app.ws("/gateway") { ws ->
             ws.onConnect { ctx -> println("Connected") }
             ws.onMessage { ctx ->
-                // val user = ctx.message<User>() // convert from json string to object
-                ctx.send(ctx.message()) //  convert to json string and send back
+                val req = RpcRequest.fromJson(ctx.message())
+                val response = req.callOnServer()
+                if (response != null) {
+                    ctx.send(response.toString())
+                }
             }
             ws.onClose { ctx -> println("Closed") }
             ws.onError { ctx -> println("Errored") }
